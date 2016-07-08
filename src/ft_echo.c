@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:19 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 13:28:16 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/07/08 16:38:11 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,21 @@
 
 void	ft_echo(char **cmd)
 {
-	extern char	**environ;
-	char		**argv;
-	pid_t		pid;
+	int		i;
+	char	**argv;
 
 	argv = NULL;
-	pid = -1;
+	i = 1;
 	if (ft_fill_args(cmd, &argv) == TRUE)
 	{
-		if ((pid = fork()) >= 0)
+		while (argv[i] != NULL)
 		{
-			if (pid == 0)
-				execve("/bin/echo", argv, environ);
-			else
-				waitpid(pid, 0, 0);
+			ft_putstr(argv[i]);
+			if (argv[i + 1] != NULL)
+				ft_putstr(" ");
+			i++;
 		}
-		else
-			ft_error("Cannot execute command. Process\
-					initialisation failed.", NULL);
+		ft_putendl("");
 	}
 	else
 		ft_error("There was an unexpected error executing the\
