@@ -12,5 +12,7 @@ void		ft_del_args(char ***argv);
 void		ft_cd(char **cmd);
 void		ft_error(char *err, char *err_info);
 void		ft_setenv(char **cmd);
+char		*ft_get_env_name(char *eq);
+char		*ft_get_env_val(char *eq);
 
 #endif

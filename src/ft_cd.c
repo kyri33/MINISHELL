@@ -10,7 +10,15 @@ void	ft_cd(char **cmd)
 	argv = NULL;
 	if (ft_fill_args(cmd, &argv, "cd") == TRUE)
 	{
-		if (chdir(argv[1]) < 0)
+		if (ft_strlen(argv[1]) == 0)
+		{
+			ft_error("Usage: cd <path>", NULL);
+			return;
+		}
+		if (access(argv[1], R_OK) < 0)
+			ft_error("You do not have access to the directory",
+				argv[1]);
+		else if (chdir(argv[1]) < 0)
 			ft_error("Cannot navigate to directory",
 				argv[1]);
 	}
