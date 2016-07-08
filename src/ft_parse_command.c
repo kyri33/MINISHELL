@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 14:22:09 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/07/08 15:03:32 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_parse_command(char **cmd)
 		ft_pwd();
 	else if (ft_strnequ(*cmd, "unsetenv", 6) == TRUE)
 		ft_unsetenv(cmd);
+	else if (ft_strnequ(*cmd, "./", 2) == TRUE)
+		ft_execute(cmd);
 	else
 		ft_error(*cmd, "command not found");
 }

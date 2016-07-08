@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 14:01:14 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/07/08 15:46:09 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ static int		ft_num_words(char *str)
 {
 	int		i;
 	int		count;
+	t_bool	quote;
 
 	i = 0;
 	count = 0;
+	quote = FALSE;
 	while (str[i] != '\0')
 	{
-		if ((str[i] == ' ' || str[i] == '\t') && str[i - 1] != ' ' &&
-				str[i - 1] != '\t')
+		if (str[i] == '"')
+			quote = !quote;
+		if (((str[i] == ' ' || str[i] == '\t') && str[i - 1] != ' ' &&
+				str[i - 1] != '\t') && quote == FALSE)
 			count++;
 		i++;
 	}
@@ -37,16 +41,36 @@ static int		ft_wordlen(char *str)
 {
 	int		i;
 	int		len;
+	t_bool	quote;
 
 	i = 0;
 	len = 0;
-	while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
+	quote = FALSE;
+	while (((str[i] != ' ' && str[i] != '\t') || quote == TRUE) &&
+			str[i] != '\0')
 	{
-		len++;
+		if (str[i] == '"')
+			quote = !quote;
+		else
+			len++;
 		i++;
 	}
 	return (len);
 }
+
+/*static char		*ft_dup(const char *s)
+{
+	int		size;
+	int		i;
+	char	*cpy;
+
+	size = 0;
+	while (s[size] != '\0')
+		size++;
+	if ((cpy = (char *)malloc(sizeof(char) * (size + 1))) == NULL)
+		return (NULL);
+
+}*/
 
 static t_bool	ft_split(char **cmd, char ***argv)
 {
@@ -65,6 +89,8 @@ static t_bool	ft_split(char **cmd, char ***argv)
 		while ((*cmd)[src] == ' ' || (*cmd)[src] == '\t')
 			src++;
 		len = ft_wordlen(&((*cmd)[src]));
+		if ((*cmd)[src] == '"')
+			src++;
 		if (((*argv)[i] = ft_strsub(*cmd, (unsigned int)src, len))
 				== NULL)
 			return (FALSE);

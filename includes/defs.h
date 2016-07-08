@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 14:23:16 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/07/08 15:18:10 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char		*ft_get_env_val(char *eq);
 void		ft_env(void);
 void		ft_pwd(void);
 void		ft_unsetenv(char **cmd);
+void		ft_execute(char **cmd);
 
 #endif
