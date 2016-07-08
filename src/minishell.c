@@ -40,11 +40,11 @@ int		main(void)
 		ft_putstr(ft_get_user());
 		ft_putstr("@minishell$ ");
 		if (get_next_line(STDIN, &cmd) == FAILURE)
-			ft_putendl_fd("An unexpected error occured while\
-				reading user input.", STDERR);
+			ft_error("An unexpected error occured while\
+				reading user input.", NULL);
 		if (ft_rem_spaces(&cmd) == FALSE)
-			ft_putendl_fd("An unexpected error occured while\
-				reading user input.", STDERR);
+			ft_error("An unexpected error occured while\
+				reading user input.", NULL);
 		ft_parse_command(&cmd);
 	}
 	ft_exit(&cmd, EXIT_SUCCESS, NULL);
