@@ -7,17 +7,18 @@
 
 void	ft_echo(char **cmd)
 {
-	char	**argv;
-	pid_t	pid;
+	extern char	**environ;
+	char		**argv;
+	pid_t		pid;
 
 	argv = NULL;
 	pid = -1;
-	if (ft_fill_args(cmd, &argv, "echo") == TRUE)
+	if (ft_fill_args(cmd, &argv) == TRUE)
 	{
 		if ((pid = fork()) >= 0)
 		{
 			if (pid == 0)
-				execv("/bin/echo", argv);
+				execve("/bin/echo", argv, environ);
 			else
 				waitpid(pid, 0, 0);
 		}
