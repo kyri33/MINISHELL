@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_setenv.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 13:25:16 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/08 14:28:59 by khamusek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "libft.h"
 #include "defs.h"
@@ -26,11 +38,11 @@ static t_bool	ft_dup_env(char ***environ, char ***tmp)
 	int		size;
 	int		i;
 
-	size = 1;
+	size = 0;
 	i = 0;
 	while ((*environ)[size] != NULL)
 		size++;
-	if ((*tmp = (char **)malloc(sizeof(char *) * (size + 1))) == NULL)
+	if ((*tmp = (char **)malloc(sizeof(char *) * (size + 2))) == NULL)
 		return (FALSE);
 	while (i < size)
 	{
@@ -40,13 +52,13 @@ static t_bool	ft_dup_env(char ***environ, char ***tmp)
 	}
 	(*tmp)[i] = NULL;
 	(*tmp)[i + 1] = NULL;
-	return (TRUE);	
+	return (TRUE);
 }
 
 static t_bool	ft_add_var(char *name, char *val, char ***env)
 {
 	int		i;
-	char **tmp;
+	char	**tmp;
 
 	i = 0;
 	tmp = NULL;
@@ -83,7 +95,7 @@ static t_bool	ft_set(char *name, char *val)
 	return (ft_add_var(name, val, &environ));
 }
 
-void		ft_setenv(char **cmd)
+void			ft_setenv(char **cmd)
 {
 	int		i;
 	char	*eq;
@@ -93,9 +105,9 @@ void		ft_setenv(char **cmd)
 	if (ft_strnequ(*cmd, "setenv ", 7) == FALSE || eq == NULL)
 	{
 		ft_error("Usage: setenv [NAME]=[VALUE]", NULL);
-		return;
+		return ;
 	}
-	while(eq != NULL)
+	while (eq != NULL)
 	{
 		i = 0;
 		while (*(eq - i) != ' ' && *(eq - i) != '\t')
@@ -103,8 +115,8 @@ void		ft_setenv(char **cmd)
 		if (ft_get_env_name(eq - i + 1) == NULL || ft_get_env_val(eq)
 				== NULL)
 			ft_error("Usage: setenv [NAME]=[VALUE]", NULL);
-		else if (ft_set(ft_get_env_name(eq - i + 1), ft_get_env_val(eq
-				)) == FALSE)
+		else if (ft_set(ft_get_env_name(eq - i + 1), ft_get_env_val(eq))
+				== FALSE)
 			ft_error("Unable to set environment variable",
 				ft_get_env_name(eq - i + 1));
 		eq = ft_strchr(eq + 1, '=');

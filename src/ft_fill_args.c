@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fill_args.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/08 14:01:14 by khamusek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "libft.h"
 #include "defs.h"
 
-static int	ft_num_words(char *str)
+static int		ft_num_words(char *str)
 {
 	int		i;
 	int		count;
@@ -21,7 +33,7 @@ static int	ft_num_words(char *str)
 	return (count);
 }
 
-static int	ft_wordlen(char *str)
+static int		ft_wordlen(char *str)
 {
 	int		i;
 	int		len;
@@ -48,7 +60,7 @@ static t_bool	ft_split(char **cmd, char ***argv)
 	words = ft_num_words(*cmd);
 	if ((*argv = (char **)malloc(sizeof(char *) * (words + 1))) == NULL)
 		return (FALSE);
-	while(i < words)
+	while (i < words)
 	{
 		while ((*cmd)[src] == ' ' || (*cmd)[src] == '\t')
 			src++;
@@ -63,7 +75,7 @@ static t_bool	ft_split(char **cmd, char ***argv)
 	return (TRUE);
 }
 
-t_bool		ft_fill_args(char **cmd, char ***argv)
+t_bool			ft_fill_args(char **cmd, char ***argv)
 {
 	if (ft_split(cmd, argv) == FALSE)
 		return (FALSE);

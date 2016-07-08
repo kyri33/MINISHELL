@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defs.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/08 14:23:16 by khamusek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFS_H
 # define DEFS_H
 
-#include "libft.h"
+# include "libft.h"
 
 # define MAX_PATH_SIZE 4096
 
@@ -18,5 +30,6 @@ char		*ft_get_env_name(char *eq);
 char		*ft_get_env_val(char *eq);
 void		ft_env(void);
 void		ft_pwd(void);
+void		ft_unsetenv(char **cmd);
 
 #endif

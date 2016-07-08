@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_command.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/08 14:22:09 by khamusek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "defs.h"
 
@@ -20,6 +32,8 @@ void	ft_parse_command(char **cmd)
 	else if (ft_strnequ(*cmd, "pwd ", 4) == TRUE || ft_strnequ(*cmd,
 			"pwd", 4) == TRUE)
 		ft_pwd();
+	else if (ft_strnequ(*cmd, "unsetenv", 6) == TRUE)
+		ft_unsetenv(cmd);
 	else
 		ft_error(*cmd, "command not found");
 }

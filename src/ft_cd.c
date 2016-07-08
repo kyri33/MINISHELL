@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 13:23:41 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/08 13:28:33 by khamusek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
@@ -13,7 +25,7 @@ void	ft_cd(char **cmd)
 		if (ft_strlen(argv[1]) == 0)
 		{
 			ft_error("Usage: cd <path>", NULL);
-			return;
+			return ;
 		}
 		if (access(argv[1], F_OK) < 0)
 			ft_error(argv[1], "No such file or directory");

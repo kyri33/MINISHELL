@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 13:24:19 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/08 13:28:16 by khamusek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -24,10 +36,10 @@ void	ft_echo(char **cmd)
 		}
 		else
 			ft_error("Cannot execute command. Process\
-				initialisation failed.", NULL);
+					initialisation failed.", NULL);
 	}
 	else
 		ft_error("There was an unexpected error executing the\
-			command", "echo");
+				command", "echo");
 	ft_del_args(&argv);
 }
