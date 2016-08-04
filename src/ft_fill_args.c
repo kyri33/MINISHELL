@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 15:46:09 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 13:46:22 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,6 @@ static int		ft_wordlen(char *str)
 	}
 	return (len);
 }
-
-/*static char		*ft_dup(const char *s)
-{
-	int		size;
-	int		i;
-	char	*cpy;
-
-	size = 0;
-	while (s[size] != '\0')
-		size++;
-	if ((cpy = (char *)malloc(sizeof(char) * (size + 1))) == NULL)
-		return (NULL);
-
-}*/
 
 static t_bool	ft_split(char **cmd, char ***argv)
 {

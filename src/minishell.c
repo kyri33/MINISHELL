@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:17 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 13:35:06 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 14:24:13 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,60 @@ static t_bool	ft_isspace(char c)
 	return (c == ' ' || c == '\t');
 }
 
-static t_bool	ft_rem_spaces(char **cmd)
+static t_bool	ft_check_quotes(char *cmd)
 {
 	int		i;
-	char	*ret;
+	int		dbl_quote;
+	int		sngl_quote;
 
 	i = 0;
-	ret = NULL;
-	while ((*cmd)[i] != '\0' && ft_isspace((*cmd)[i]) == TRUE)
+	dbl_quote = 0;
+	sngl_quote = 0;
+	while (cmd[i] != 0)
+	{
+		if (cmd[i] == '\'')
+			sngl_quote = !sngl_quote;
+		if (cmd[i] == '"')
+			dbl_quote = !dbl_quote;
 		i++;
-	if ((*cmd)[i] == '\0')
-		return (TRUE);
-	if ((ret = ft_strdup(*cmd + i)) == NULL)
+	}
+	if (dbl_quote != 0 || sngl_quote != 0)
 		return (FALSE);
-	free(*cmd);
-	*cmd = NULL;
-	*cmd = ret;
 	return (TRUE);
+}
+
+static int		ft_length(char *cmd)
+{
+	int		count;
+	int		i;
+	int		sngl_quote;
+	int		dbl_quote;
+
+	count = 0;
+	i = 0;
+	sngl_quote = 0;
+	dbl_quote = 0;
+	while (cmd[i] != '\0' && ft_isspace(cmd[i]) == TRUE)
+		i++;
+	while (cmd[i] != '\0')
+	{
+		if (cmd[i] == '"')
+			dbl_quote = !dbl_quote;
+		else if (cmd[i] == '\'')
+			sngl_quote = !sngl_quote;
+		else if ((ft_isspace(cmd[i]) == TRUE && (sngl_quote != 0 || dbl_quote !=
+					0) && ft_isspace(cmd[i + 1]) == FALSE && cmd[i + 1] != '\0')
+					|| ft_isspace(cmd[i]) == FALSE)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+static t_bool	ft_rem_spaces(char **cmd)
+{
+	if (ft_check_quotes(*cmd) == FALSE)
+		return (FALSE);
 }
 
 int				main(void)
