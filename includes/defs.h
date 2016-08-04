@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 15:18:10 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 13:17:10 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include "libft.h"
 
 # define MAX_PATH_SIZE 4096
+# define CGRN "\x1B[32m"
+# define CRED "\x1B[31m"
+# define CYEL "\x1B[33m"
+# define CMAG "\x1B[35m"
+# define CCYN "\x1B[36m"
+# define CNRM "\x1B[0m"
+# define CBLUE "\x1B[34m"
+# define CWHITE "\x1B[37m"
 
 const char	*ft_get_user();
 void		ft_exit(char **cmd, int status, char *err);

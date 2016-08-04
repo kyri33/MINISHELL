@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   bool.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:46:37 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 12:44:56 by khamusek         ###   ########.fr       */
+/*   Created: 2016/07/14 13:47:59 by khamusek          #+#    #+#             */
+/*   Updated: 2016/07/14 14:14:37 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include "libft.h"
+#ifndef BOOL_H
+# define BOOL_H
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*dest;
+# define FALSE 0
+# define TRUE 1
 
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1)
-				+ ft_strlen(s2) + 1));
-	if (!dest)
-		return (NULL);
-	ft_strcpy(dest, s1);
-	ft_strcat(dest, s2);
-	return (dest);
-}
+typedef unsigned int	t_bool;
+
+#endif

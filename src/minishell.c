@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:17 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 13:28:51 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 13:35:06 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int				main(void)
 			free(cmd);
 			cmd = NULL;
 		}
-		ft_putstr(ft_get_user());
-		ft_putstr("@minishell$ ");
-		if (get_next_line(STDIN, &cmd) == FAILURE)
+		ft_printf("%s%s%s@%sminishell$%s ", CCYN, ft_get_user(), CNRM, CMAG,
+				CNRM);
+		if (get_next_line(STDIN, &cmd) == -1)
 			ft_error("An unexpected error occured while\
 				reading user input.", NULL);
 		if (ft_rem_spaces(&cmd) == FALSE)

@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_case.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:46:37 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 12:44:56 by khamusek         ###   ########.fr       */
+/*   Created: 2016/06/05 13:58:21 by khamusek          #+#    #+#             */
+/*   Updated: 2016/08/04 13:22:47 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
 #include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_putstr_case(const char *str, t_bool upp_case)
 {
-	char	*dest;
+	int		i;
 
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1)
-				+ ft_strlen(s2) + 1));
-	if (!dest)
-		return (NULL);
-	ft_strcpy(dest, s1);
-	ft_strcat(dest, s2);
-	return (dest);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (upp_case == FALSE)
+			ft_putchar(str[i]);
+		else
+			ft_putchar(ft_toupper(str[i]));
+		i++;
+	}
+	return (i);
 }

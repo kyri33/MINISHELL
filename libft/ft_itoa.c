@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/14 12:03:35 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 12:03:38 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 12:43:08 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@
 char	*ft_itoa(int n)
 {
 	char	*str;
+	int		sign;
 
-	str = ft_strnew(20) + 19;
-	if (n >= 0 && str)
+	sign = 0;
+	str = ((char *)malloc(sizeof(char) * 50)) + 48;
+	str[1] = '\0';
+	if (n < 0)
 	{
-		*--str = '0' + (n % 10);
-		n = n / 10;
-		while (str != NULL)
-		{
-			*--str = '0' + (n % 10);
-			n = n / 10;
-		}
+		sign = 1;
+		n = -n;
 	}
-	else if (str)
+	(*str) = "0123456789"[n % 10];
+	n /= 10;
+	while (n != 0)
 	{
-		*--str = '0' - (n % 10);
-		n = n / 10;
-		while (n != 0)
-		{
-			*--str = '0' - (n % 10);
-			n = n / 10;
-		}
-		*--str = '-';
+		str--;
+		(*str) = "0123456789"[n % 10];
+		n /= 10;
+	}
+	if (sign == 1)
+	{
+		str--;
+		(*str) = '-';
 	}
 	return (str);
 }

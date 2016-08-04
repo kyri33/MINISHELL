@@ -6,25 +6,21 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 11:42:05 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/10 13:19:45 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 13:24:30 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include <string.h>
-#include "get_next_line.h"
+# include <stdlib.h>
+# include "bool.h"
+# include "get_next_line.h"
+# include "ft_printf.h"
 
-# define TRUE 1
-# define FALSE 0
-# define SUCCESS 0
-# define FAILURE -1
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
-
-typedef unsigned int t_bool;
 
 void	ft_putchar(char c);
 void	ft_putstr(char const *str);

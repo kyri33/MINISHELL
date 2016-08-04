@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:46:37 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 12:44:56 by khamusek         ###   ########.fr       */
+/*   Created: 2016/06/05 14:04:18 by khamusek          #+#    #+#             */
+/*   Updated: 2016/08/04 13:25:16 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*dest;
+# include "bool.h"
 
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1)
-				+ ft_strlen(s2) + 1));
-	if (!dest)
-		return (NULL);
-	ft_strcpy(dest, s1);
-	ft_strcat(dest, s2);
-	return (dest);
-}
+# define REP "0123456789abcdef"
+
+int	ft_printf(const char *format, ...);
+int	ft_putstr_case(const char *str, t_bool upp_case);
+
+#endif

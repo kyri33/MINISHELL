@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/14 11:35:53 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 11:41:55 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/04 12:45:17 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ static int		ft_numwords(const char *s, char c)
 	words = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		while (s[i] == c && s[i] != '\0')
+			i++;
+		if (s[i] == '\0')
+			break ;
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			words++;
 		i++;
 	}
-	return (words + 1);
+	return (words);
 }
 
 static int		ft_wordlen(const char *s, char c)
@@ -37,10 +41,12 @@ static int		ft_wordlen(const char *s, char c)
 
 	i = 0;
 	len = 0;
+	while (s[i] == c && s[i] != '\0')
+		i++;
 	while (s[i] != c && s[i] != '\0')
 	{
-		len++;
 		i++;
+		len++;
 	}
 	return (len);
 }
@@ -61,13 +67,15 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	while (i < words)
 	{
-		len = ft_wordlen(&(s[src]), c);
+		len = ft_wordlen(s + src, c);
 		arr[i] = ft_strsub(s, (unsigned int)src, len);
 		if (!(arr[i]))
 			return (NULL);
-		src = src + len + 1;
+		src = src + len;
+		while (s[src] == c && s[src] != '\0')
+			src++;
 		i++;
 	}
-	arr[i] = 0;
+	arr[i] = NULL;
 	return (arr);
 }
