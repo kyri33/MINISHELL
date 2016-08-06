@@ -27,7 +27,7 @@
 
 const char	*ft_get_user();
 void		ft_exit(char **cmd, int status, char *err);
-void		ft_parse_command(char **cmd);
+void		ft_parse_command(char ***cmds);
 void		ft_echo(char **cmd);
 t_bool		ft_fill_args(char **cmd, char ***argv);
 void		ft_del_args(char ***argv);
@@ -40,5 +40,6 @@ void		ft_env(void);
 void		ft_pwd(void);
 void		ft_unsetenv(char **cmd);
 void		ft_execute(char **cmd);
+t_bool		ft_rem_spaces(char **cmd);
 
 #endif

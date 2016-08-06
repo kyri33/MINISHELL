@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "defs.h"
 
-void	ft_parse_command(char **cmd)
+static void		ft_run_command(char **cmd)
 {
 	if (ft_strnequ(*cmd, "exit", 5) == TRUE || ft_strnequ(*cmd, "exit ", 5))
 		ft_exit(cmd, EXIT_SUCCESS, NULL);
@@ -40,4 +40,27 @@ void	ft_parse_command(char **cmd)
 		return ;
 	else
 		ft_error(*cmd, "command not found");
+}
+
+void			ft_parse_command(char ***cmds)
+{
+	int		i;
+
+	i = 0;
+	while ((*cmds)[i] != NULL)
+	{
+		if (ft_rem_spaces(&((*cmds)[i])) == FALSE)
+		{
+			ft_error("An unexpected error occured while reading user input.",
+				NULL);
+				return ;
+		}
+		i++;
+	}
+	i = 0;
+	while ((*cmds)[i] != NULL)
+	{
+		ft_run_command(&((*cmds)[i]));
+		i++;
+	}
 }
