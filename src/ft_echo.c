@@ -36,7 +36,7 @@ void	ft_echo(char **cmd)
 		ft_putendl("");
 	}
 	else
-		ft_error("There was an unexpected error executing the\
-				command", "echo");
+		ft_error("There was an unexpected error executing the command",
+			"echo");
 	ft_del_args(&argv);
 }
