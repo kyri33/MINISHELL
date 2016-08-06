@@ -39,6 +39,19 @@ static int		ft_length(char *cmd)
 	return (count);
 }
 
+static void		ft_rem_tabs(char **cmd)
+{
+	int		i;
+
+	i = 0;
+	while ((*cmd)[i] != '\0')
+	{
+		if ((*cmd)[i] == '\t')
+			(*cmd)[i] = ' ';
+		i++;
+	}
+}
+
 static t_bool	ft_rem_spaces(char **cmd)
 {
 	int		i;
@@ -49,6 +62,7 @@ static t_bool	ft_rem_spaces(char **cmd)
 	j = 0;
 	if ((ret = (char *)malloc(sizeof(char) * (ft_length(*cmd) + 1))) == NULL)
 		return (FALSE);
+	ft_rem_tabs(cmd);
 	while ((*cmd)[i] != '\0' && ft_isspace((*cmd)[i]) == TRUE)
 		i++;
 	while ((*cmd)[i] != '\0')
