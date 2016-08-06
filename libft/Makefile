@@ -1,4 +1,4 @@
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a
 FILES = ft_putchar.c ft_putstr.c ft_putnbr.c \
@@ -23,7 +23,7 @@ FILES = ft_putchar.c ft_putstr.c ft_putnbr.c \
 	ft_printf.c
 
 all:
-	gcc -c $(CFLAGS) $(FILES)
+	gcc -c $(FILES)
 	ar rcs $(NAME) *.o
 	ranlib $(NAME)
 

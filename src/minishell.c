@@ -18,50 +18,21 @@ static t_bool	ft_isspace(char c)
 	return (c == ' ' || c == '\t');
 }
 
-static t_bool	ft_check_quotes(char *cmd)
-{
-	int		i;
-	int		dbl_quote;
-	int		sngl_quote;
-
-	i = 0;
-	dbl_quote = 0;
-	sngl_quote = 0;
-	while (cmd[i] != 0)
-	{
-		if (cmd[i] == '\'')
-			sngl_quote = !sngl_quote;
-		if (cmd[i] == '"')
-			dbl_quote = !dbl_quote;
-		i++;
-	}
-	if (dbl_quote != 0 || sngl_quote != 0)
-		return (FALSE);
-	return (TRUE);
-}
-
 static int		ft_length(char *cmd)
 {
-	int		count;
 	int		i;
-	int		sngl_quote;
-	int		dbl_quote;
+	int		count;
 
-	count = 0;
 	i = 0;
-	sngl_quote = 0;
-	dbl_quote = 0;
+	count = 0;
 	while (cmd[i] != '\0' && ft_isspace(cmd[i]) == TRUE)
 		i++;
 	while (cmd[i] != '\0')
 	{
-		if (cmd[i] == '"')
-			dbl_quote = !dbl_quote;
-		else if (cmd[i] == '\'')
-			sngl_quote = !sngl_quote;
-		else if ((ft_isspace(cmd[i]) == TRUE && (sngl_quote != 0 || dbl_quote !=
-					0) && ft_isspace(cmd[i + 1]) == FALSE && cmd[i + 1] != '\0')
-					|| ft_isspace(cmd[i]) == FALSE)
+		if (ft_isspace(cmd[i]) == TRUE && ft_isspace(cmd[i + 1]) == FALSE &&
+				cmd[i + 1] != '\0')
+				count++;
+		else if (ft_isspace(cmd[i]) == FALSE)
 			count++;
 		i++;
 	}
@@ -70,8 +41,30 @@ static int		ft_length(char *cmd)
 
 static t_bool	ft_rem_spaces(char **cmd)
 {
-	if (ft_check_quotes(*cmd) == FALSE)
+	int		i;
+	int		j;
+	char	*ret;
+
+	i = 0;
+	j = 0;
+	if ((ret = (char *)malloc(sizeof(char) * (ft_length(*cmd) + 1))) == NULL)
 		return (FALSE);
+	while ((*cmd)[i] != '\0' && ft_isspace((*cmd)[i]) == TRUE)
+		i++;
+	while ((*cmd)[i] != '\0')
+	{
+		if ((ft_isspace((*cmd)[i]) == TRUE && ft_isspace((*cmd)[i + 1]) == FALSE
+				&& (*cmd)[i + 1] != '\0') || ft_isspace((*cmd)[i]) == FALSE)
+		{
+			ret[j] = (*cmd)[i];
+			j++;
+		}
+		i++;
+	}
+	ret[j] = '\0';
+	free((*cmd));
+	(*cmd) = ret;
+	return (TRUE);
 }
 
 int				main(void)
@@ -86,7 +79,7 @@ int				main(void)
 			free(cmd);
 			cmd = NULL;
 		}
-		ft_printf("%s%s%s@%sminishell$%s ", CCYN, ft_get_user(), CNRM, CMAG,
+		ft_printf("%s%s%s@%s21sh$%s ", CCYN, ft_get_user(), CNRM, CMAG,
 				CNRM);
 		if (get_next_line(STDIN, &cmd) == -1)
 			ft_error("An unexpected error occured while\
