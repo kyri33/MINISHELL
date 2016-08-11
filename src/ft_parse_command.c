@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 13:50:07 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/11 13:13:37 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ft_parse_command(char ***cmds)
 		{
 			ft_error("An unexpected error occured while reading user input.",
 				NULL);
-				return ;
+			return ;
 		}
 		i++;
 	}

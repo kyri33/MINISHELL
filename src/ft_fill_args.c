@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 13:46:22 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/11 13:13:01 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_bool	ft_parse_env(char ***argv)
 				val = ft_strdup("");
 			if (val == NULL)
 				return (FALSE);
-			free ((*argv)[i]);
+			free((*argv)[i]);
 			(*argv)[i] = val;
 			return (TRUE);
 		}
