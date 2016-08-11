@@ -6,12 +6,17 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/11 13:13:37 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/11 14:15:06 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "defs.h"
+
+static t_bool	ft_execute_path(char **cmd)
+{
+	extern
+}
 
 static void		ft_run_command(char **cmd)
 {
@@ -36,9 +41,7 @@ static void		ft_run_command(char **cmd)
 	else if (ft_strnequ(*cmd, "./", 2) == TRUE || ft_strnequ(*cmd, "/", 1) ==
 			TRUE)
 		ft_execute(cmd);
-	else if (ft_strnequ(*cmd, "", 1) == TRUE)
-		return ;
-	else
+	else if (ft_execute_path(cmd) == FALSE)
 		ft_error(*cmd, "command not found");
 }
 
