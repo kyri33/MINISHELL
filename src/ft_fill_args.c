@@ -39,10 +39,22 @@ static char		*ft_var(char *str)
 	return (NULL);
 }
 
+static t_bool	ft_handle_var(char **arg, char *var)
+{
+	char	*tmp;
+
+	if ((tmp = ft_var(var)) == NULL)
+		tmp = ft_strdup("");
+	if (tmp == NULL)
+		return (FALSE);
+	free(*arg);
+	(*arg) = tmp;
+	return (TRUE);
+}
+
 static t_bool	ft_parse_env(char ***argv)
 {
 	int			i;
-	char		*val;
 	extern char	**environ;
 
 	i = 0;
@@ -50,13 +62,13 @@ static t_bool	ft_parse_env(char ***argv)
 	{
 		if (ft_strnequ((*argv)[i], "$", 1) == TRUE)
 		{
-			if ((val = ft_var((*argv)[i])) == NULL)
-				val = ft_strdup("");
-			if (val == NULL)
+			if (ft_handle_var(&((*argv)[i]), (*argv)[i]) == FALSE)
 				return (FALSE);
-			free((*argv)[i]);
-			(*argv)[i] = val;
-			return (TRUE);
+		}
+		else if (ft_strnequ((*argv)[i], "~", 1) == TRUE)
+		{
+			if (ft_handle_var(&((*argv)[i]), "$HOME") == FALSE)
+				return (FALSE);
 		}
 		i++;
 	}
