@@ -17,32 +17,22 @@
 #include "libft.h"
 #include "defs.h"
 
-static t_bool	ft_fork_path(char ***argv)
+static void		ft_fork_path(char ***argv)
 {
-	int			status;
 	pid_t		pid;
-	t_bool		ret;
 	extern char	**environ;
 
-	ret = FALSE;
 	pid = -1;
 	if ((pid = fork()) >= 0)
 	{
 		if (pid == 0)
 		{
-			if (access((*argv)[0], F_OK) < 0)
-				exit(1);
 			if (execve((*argv)[0], (*argv), environ) < 0)
-				exit(2);
-			exit(0);
+				ft_error("Unable to execute program", (*argv)[0]);
 		}
 		else
-		{
-			waitpid(pid, &status, 0);
-			ret = (WEXITSTATUS(status) == 0 || WEXITSTATUS(status) == 2);
-		}
+			waitpid(pid, NULL, 0);
 	}
-	return (ret);
 }
 
 static t_bool	ft_run_path(char *cmd, char *path)
@@ -60,7 +50,13 @@ static t_bool	ft_run_path(char *cmd, char *path)
 		free(prog);
 		return (FALSE);
 	}
-	ret = ft_fork_path(&argv);
+	if (access(argv[0], F_OK) < 0)
+		ret = FALSE;
+	else
+	{
+		ft_fork_path(&argv);
+		ret = TRUE;
+	}
 	free(prog);
 	ft_del_args(&argv);
 	return (ret);
