@@ -14,24 +14,33 @@
 #include "libft.h"
 #include "defs.h"
 
-static char	*ft_get_env_val(char *str)
+static char	*ft_get_val(char *str)
 {
-	int		i;
-	char	*ret;
+	char	*eq;
 
-	i = 0;
-	ret = NULL;
-	while (str[i] != '=' && str[i] != '\0')
-		i++;
-	if (str[i] == '\0')
+	eq = NULL;
+	if ((eq = ft_strchr(str, '=')) == NULL)
 		return (NULL);
-	i++;
-	ret = ft_strdup(str + i);
-	return (ret);
+	return (ft_strdup(eq + 1));
 }
 
-static t_bool	ft_isenv_var(char *s1, char *s2)
+static t_bool	ft_isenv_var(char *name, char *env_var)
 {
+	int		i;
+
+	i = 0;
+	if (ft_strchr(name, '=') != NULL || ft_strchr(env_var, '=') == NULL)
+		return (FALSE);
+	while (name[i] != '\0' && env_var[i] != '\0' && env_var[i] != '=')
+	{
+		if (name[i] != env_var[i])
+			return (FALSE);
+		i++;
+	}
+	if (name[i] == '\0' && env_var[i] == '=')
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 char		*ft_get_env(char *var)
@@ -43,7 +52,7 @@ char		*ft_get_env(char *var)
 	while (environ[i] != NULL)
 	{
 		if (ft_isenv_var(var, environ[i]) == TRUE)
-			return (ft_get_env_val(environ[i]));
+			return (ft_get_val(environ[i]));
 		i++;
 	}
 	return (NULL);

@@ -34,12 +34,14 @@ void		ft_del_args(char ***argv);
 void		ft_cd(char **cmd);
 void		ft_error(char *err, char *err_info);
 void		ft_setenv(char **cmd);
-char		*ft_get_env_name(char *eq);
-char		*ft_get_env_val(char *eq);
 void		ft_env(void);
 void		ft_pwd(void);
 void		ft_unsetenv(char **cmd);
 void		ft_execute(char **cmd);
 t_bool		ft_rem_spaces(char **cmd);
+char		*ft_get_env(char *var);
+char		*ft_get_env_name(char *eq);
+char		*ft_get_env_val(char *eq);
+char		*ft_strjoin_path(char *path, char *cmd);
 
 #endif

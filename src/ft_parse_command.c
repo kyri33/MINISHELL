@@ -11,11 +11,87 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include "libft.h"
 #include "defs.h"
 
-static t_bool	ft_execute_path(char **cmd)
+static t_bool	ft_fork_path(char ***argv)
 {
-	extern
+	int			status;
+	pid_t		pid;
+	t_bool		ret;
+	extern char	**environ;
+
+	ret = FALSE;
+	pid = -1;
+	if ((pid = fork()) >= 0)
+	{
+		if (pid == 0)
+		{
+			if (access((*argv)[0], F_OK) < 0)
+				exit(1);
+			if (execve((*argv)[0], (*argv), environ) < 0)
+				exit(2);
+			exit(0);
+		}
+		else
+		{
+			waitpid(pid, &status, 0);
+			ret = (WEXITSTATUS(status) == 0 || WEXITSTATUS(status) == 2);
+		}
+	}
+	return (ret);
+}
+
+static t_bool	ft_run_path(char *cmd, char *path)
+{
+	t_bool	ret;
+	char	**argv;
+	char	*prog;
+
+	argv = NULL;
+	ret = FALSE;
+	if ((prog = ft_strjoin_path(path, cmd)) == NULL)
+		return (FALSE);
+	if (ft_fill_args(&prog, &argv) == FALSE)
+	{
+		free(prog);
+		return (FALSE);
+	}
+	ret = ft_fork_path(&argv);
+	free(prog);
+	ft_del_args(&argv);
+	return (ret);
+}
+
+static t_bool	ft_execute_path(char *cmd)
+{
+	int		i;
+	char	*str;
+	char	**path;
+	t_bool	ret;
+
+	i = 0;
+	str = NULL;
+	path = NULL;
+	ret = FALSE;
+	if ((str = ft_get_env("PATH")) == NULL)
+		return (FALSE);
+	if ((path = ft_strsplit(str, ':')) == NULL)
+	{
+		free(str);
+		return (FALSE);
+	}
+	while (path[i] != NULL && ret == FALSE)
+	{
+		ret = ft_run_path(cmd, path[i]);
+		i++;
+	}
+	free(str);
+	ft_del_args(&path);
+	return (ret);
 }
 
 static void		ft_run_command(char **cmd)
@@ -41,7 +117,7 @@ static void		ft_run_command(char **cmd)
 	else if (ft_strnequ(*cmd, "./", 2) == TRUE || ft_strnequ(*cmd, "/", 1) ==
 			TRUE)
 		ft_execute(cmd);
-	else if (ft_execute_path(cmd) == FALSE)
+	else if (ft_execute_path(*cmd) == FALSE)
 		ft_error(*cmd, "command not found");
 }
 
