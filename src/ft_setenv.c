@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:25:16 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 14:28:59 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/16 14:14:28 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ static t_bool	ft_set_var(char *name, char *val, char ***env, int i)
 {
 	char	*tmp;
 	char	*tmp2;
+	char	*var;
 
 	tmp = NULL;
+	tmp2 = NULL;
+	var = NULL;
 	if ((tmp = ft_strjoin(name, "=")) == NULL)
 		return (FALSE);
 	if ((tmp2 = ft_strjoin(tmp, val)) == NULL)

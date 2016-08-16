@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/11 13:13:01 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/16 13:57:34 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,22 @@ static char		*ft_var(char *str)
 static t_bool	ft_handle_var(char **arg, char *var)
 {
 	char	*tmp;
+	char	*path;
+	char	*c;
 
+	path = NULL;
+	c = NULL;
 	if ((tmp = ft_var(var)) == NULL)
 		tmp = ft_strdup("");
 	if (tmp == NULL)
 		return (FALSE);
+	if ((c = ft_strchr(*arg, '/')) != NULL)
+	{
+		if ((path = ft_strjoin(tmp, c)) == NULL)
+			return (FALSE);
+		free(tmp);
+		tmp = path;
+	}
 	free(*arg);
 	(*arg) = tmp;
 	return (TRUE);
@@ -62,7 +73,8 @@ static t_bool	ft_parse_env(char ***argv)
 	{
 		if (ft_strnequ((*argv)[i], "$", 1) == TRUE)
 		{
-			if (ft_handle_var(&((*argv)[i]), (*argv)[i]) == FALSE)
+			if (ft_handle_var(&((*argv)[i]), (*argv)[i])
+					== FALSE)
 				return (FALSE);
 		}
 		else if (ft_strnequ((*argv)[i], "~", 1) == TRUE)
