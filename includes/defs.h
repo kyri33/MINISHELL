@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 13:17:10 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/17 15:26:30 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ char		*ft_get_env(char *var);
 char		*ft_get_env_name(char *eq);
 char		*ft_get_env_val(char *eq);
 char		*ft_strjoin_path(char *path, char *cmd);
+t_bool		ft_handle_vars(char **arg);
 
 #endif
