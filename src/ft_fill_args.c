@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/17 15:30:02 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/18 16:09:03 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char		*ft_var(char *str)
 	return (NULL);
 }
 
-static t_bool	ft_handle_home(char **arg)
+static t_bool	ft_handle_var(char **arg, char *var)
 {
 	char	*tmp;
 	char	*path;
@@ -47,7 +47,7 @@ static t_bool	ft_handle_home(char **arg)
 
 	path = NULL;
 	c = NULL;
-	if ((tmp = ft_var("$HOME")) == NULL)
+	if ((tmp = ft_var(var)) == NULL)
 		tmp = ft_strdup(".");
 	if (tmp == NULL)
 		return (FALSE);
@@ -71,15 +71,14 @@ static t_bool	ft_parse_env(char ***argv)
 	i = 0;
 	while ((*argv)[i] != NULL)
 	{
-		if (ft_strchr((*argv)[i], '$') == NULL)
+		if (ft_strnequ((*argv)[i], "$", 1) == TRUE)
 		{
-			if (ft_handle_vars(&((*argv)[i]))
-					== FALSE)
+			if (ft_handle_var(&((*argv)[i]), (*argv)[i]) == FALSE)
 				return (FALSE);
 		}
 		else if (ft_strnequ((*argv)[i], "~", 1) == TRUE)
 		{
-			if (ft_handle_home(&((*argv)[i])) == FALSE)
+			if (ft_handle_var(&((*argv)[i]), "$HOME") == FALSE)
 				return (FALSE);
 		}
 		i++;

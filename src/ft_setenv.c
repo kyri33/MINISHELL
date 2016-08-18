@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:25:16 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/16 14:14:28 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/18 17:09:03 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_bool	ft_add_var(char *name, char *val, char ***env)
 	return (TRUE);
 }
 
-static t_bool	ft_set(char *name, char *val)
+static t_bool	ft_set(char *str)
 {
 	extern char	**environ;
 	char		*eq;
@@ -101,27 +101,30 @@ static t_bool	ft_set(char *name, char *val)
 void			ft_setenv(char **cmd)
 {
 	int		i;
-	char	*eq;
+	char	**vars;
 
 	i = 0;
-	eq = ft_strchr(*cmd, '=');
-	if (ft_strnequ(*cmd, "setenv ", 7) == FALSE || eq == NULL)
+	vars = NULL;
+	if ((vars = ft_fill_args((*cmd) + 7, ' ')) == NULL)
+		ft_error("Unable to set environment variable.", NULL);
+	while (vars[i] != NULL)
 	{
-		ft_error("Usage: setenv [NAME]=[VALUE]", NULL);
-		return ;
-	}
-	while (eq != NULL)
-	{
-		i = 0;
-		while (*(eq - i) != ' ' && *(eq - i) != '\t')
-			i++;
-		if (ft_get_env_name(eq - i + 1) == NULL || ft_get_env_val(eq)
-				== NULL)
+		if (ft_strchr(vars[i], '=') == NULL)
+		{
 			ft_error("Usage: setenv [NAME]=[VALUE]", NULL);
-		else if (ft_set(ft_get_env_name(eq - i + 1), ft_get_env_val(eq))
-				== FALSE)
-			ft_error("Unable to set environment variable",
-				ft_get_env_name(eq - i + 1));
-		eq = ft_strchr(eq + 1, '=');
+			break ;
+		}
+		i++;
 	}
+	i = 0;
+	while (vars[i] != NULL)
+	{
+		if (ft_set(vars[i]) == FALSE)
+		{
+			ft_error("Unable to set environment variable", vars[i]);
+			break ;
+		}
+		i++;
+	}
+	ft_del_args(&vars);
 }

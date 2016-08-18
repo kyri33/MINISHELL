@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/11 14:15:06 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/18 16:43:03 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ static void		ft_run_command(char **cmd)
 	else if (ft_strnequ(*cmd, "cd", 3) == TRUE ||
 			ft_strnequ(*cmd, "cd ", 3) == TRUE)
 		ft_cd(cmd);
-	else if (ft_strnequ(*cmd, "setenv", 6) == TRUE)
+	else if (ft_strnequ(*cmd, "setenv", 6) == TRUE || ft_strnequ(*cmd,
+				"setenv ", 7) == TRUE)
 		ft_setenv(cmd);
 	else if (ft_strnequ(*cmd, "env", 4) == TRUE || ft_strnequ(*cmd,
 			"env ", 5) == TRUE)
