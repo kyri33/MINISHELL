@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:44 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/18 16:09:03 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 16:55:34 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ static t_bool	ft_parse_env(char ***argv)
 	return (TRUE);
 }
 
-t_bool			ft_fill_args(char **cmd, char ***argv)
+t_bool			ft_fill_args(char *cmd, char ***argv)
 {
-	if (((*argv) = ft_strsplit(*cmd, ' ')) == NULL)
+	if (((*argv) = ft_strsplit(cmd, ' ')) == NULL)
 		return (FALSE);
 	if (ft_parse_env(argv) == FALSE)
 		return (FALSE);

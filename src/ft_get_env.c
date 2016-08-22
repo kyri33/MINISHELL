@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 14:14:45 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/11 14:47:05 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 16:46:04 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "defs.h"
 
-static char	*ft_get_val(char *str)
+static char		*ft_get_val(char *str)
 {
 	char	*eq;
 
@@ -43,7 +43,7 @@ static t_bool	ft_isenv_var(char *name, char *env_var)
 		return (FALSE);
 }
 
-char		*ft_get_env(char *var)
+char			*ft_get_env(char *var)
 {
 	int			i;
 	extern char	**environ;

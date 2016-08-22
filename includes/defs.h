@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/18 16:08:15 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 16:55:45 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ const char	*ft_get_user();
 void		ft_exit(char **cmd, int status, char *err);
 void		ft_parse_command(char ***cmds);
 void		ft_echo(char **cmd);
-t_bool		ft_fill_args(char **cmd, char ***argv);
+t_bool		ft_fill_args(char *cmd, char ***argv);
 void		ft_del_args(char ***argv);
 void		ft_cd(char **cmd);
 void		ft_error(char *err, char *err_info);
@@ -43,6 +43,7 @@ char		*ft_get_env(char *var);
 char		*ft_get_env_name(char *eq);
 char		*ft_get_env_val(char *eq);
 char		*ft_strjoin_path(char *path, char *cmd);
-//t_bool		ft_handle_vars(char **arg);
+t_bool		ft_setenv_check_vars(char ***vars);
+int			ft_setenv_set_var(char *name, char *val, char **env);
 
 #endif

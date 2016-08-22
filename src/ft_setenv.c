@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:25:16 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/18 17:09:03 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 17:08:42 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 #include "libft.h"
 #include "defs.h"
 
-static t_bool	ft_set_var(char *name, char *val, char ***env, int i)
+static t_bool	ft_set_var(char *name, char *val, char **env)
 {
 	char	*tmp;
 	char	*tmp2;
-	char	*var;
 
-	tmp = NULL;
 	tmp2 = NULL;
-	var = NULL;
 	if ((tmp = ft_strjoin(name, "=")) == NULL)
 		return (FALSE);
 	if ((tmp2 = ft_strjoin(tmp, val)) == NULL)
@@ -30,9 +27,8 @@ static t_bool	ft_set_var(char *name, char *val, char ***env, int i)
 		free(tmp);
 		return (FALSE);
 	}
-	free((*env)[i]);
 	free(tmp);
-	(*env)[i] = tmp2;
+	(*env) = tmp2;
 	return (TRUE);
 }
 
@@ -69,7 +65,7 @@ static t_bool	ft_add_var(char *name, char *val, char ***env)
 		return (FALSE);
 	while (tmp[i] != NULL)
 		i++;
-	if (ft_set_var(name, val, &tmp, i) == FALSE)
+	if (ft_set_var(name, val, &(tmp[i])) == FALSE)
 		return (FALSE);
 	*env = tmp;
 	return (TRUE);
@@ -77,25 +73,30 @@ static t_bool	ft_add_var(char *name, char *val, char ***env)
 
 static t_bool	ft_set(char *str)
 {
-	extern char	**environ;
-	char		*eq;
 	int			i;
+	int			ret;
+	char		*name;
+	char		**tmp;
+	extern char	**environ;
 
 	i = 0;
-	eq = NULL;
+	ret = 0;
+	name = NULL;
+	if ((tmp = ft_strsplit(str, '=')) == NULL)
+		return (FALSE);
 	while (environ[i] != NULL)
 	{
-		eq = ft_strchr(environ[i], '=');
-		if (ft_strequ(ft_get_env_name(environ[i]), name) == TRUE)
+		ret = ft_setenv_set_var(tmp[0], tmp[1], &(environ[i]));
+		if (ret == -1 || ret == 1)
 		{
-			if (ft_set_var(name, val, &environ, i) == FALSE)
-				return (FALSE);
-			else
-				return (TRUE);
+			ft_del_args(&tmp);
+			return (ret == 1);
 		}
 		i++;
 	}
-	return (ft_add_var(name, val, &environ));
+	ret = (int)ft_add_var(tmp[0], tmp[1], &environ);
+	ft_del_args(&tmp);
+	return ((t_bool)ret);
 }
 
 void			ft_setenv(char **cmd)
@@ -105,26 +106,19 @@ void			ft_setenv(char **cmd)
 
 	i = 0;
 	vars = NULL;
-	if ((vars = ft_fill_args((*cmd) + 7, ' ')) == NULL)
+	if ((vars = ft_strsplit((*cmd) + 7, ' ')) == NULL)
 		ft_error("Unable to set environment variable.", NULL);
-	while (vars[i] != NULL)
+	else if (ft_setenv_check_vars(&vars) == TRUE)
 	{
-		if (ft_strchr(vars[i], '=') == NULL)
+		while (vars[i] != NULL)
 		{
-			ft_error("Usage: setenv [NAME]=[VALUE]", NULL);
-			break ;
+			if (ft_set(vars[i]) == FALSE)
+			{
+				ft_error("Unable to set environment variable", vars[i]);
+				break ;
+			}
+			i++;
 		}
-		i++;
-	}
-	i = 0;
-	while (vars[i] != NULL)
-	{
-		if (ft_set(vars[i]) == FALSE)
-		{
-			ft_error("Unable to set environment variable", vars[i]);
-			break ;
-		}
-		i++;
 	}
 	ft_del_args(&vars);
 }

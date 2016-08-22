@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_path.c                                  :+:      :+:    :+:   */
+/*   ft_setenv_check_vars.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/22 16:45:07 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/22 16:45:09 by khamusek         ###   ########.fr       */
+/*   Created: 2016/08/22 15:53:32 by khamusek          #+#    #+#             */
+/*   Updated: 2016/08/22 17:10:31 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 #include "defs.h"
+#include "libft.h"
 
-char	*ft_strjoin_path(char *path, char *cmd)
+t_bool	ft_setenv_check_vars(char ***vars)
 {
-	char	*tmp;
-	char	*ret;
+	int		i;
 
-	ret = NULL;
-	if ((tmp = ft_strjoin(path, "/")) == NULL)
-		return (NULL);
-	ret = ft_strjoin(tmp, cmd);
-	free(tmp);
-	return (ret);
+	i = 0;
+	while ((*vars)[i] != NULL)
+	{
+		if (ft_strchr((*vars)[i], '=') == NULL)
+		{
+			ft_error("Usage: setenv [NAME]=[VALUE]", NULL);
+			return (FALSE);
+		}
+		i++;
+	}
+	return (TRUE);
 }

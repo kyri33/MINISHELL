@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/18 16:43:03 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 17:00:23 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_bool	ft_run_path(char *cmd, char *path)
 	ret = FALSE;
 	if ((prog = ft_strjoin_path(path, cmd)) == NULL)
 		return (FALSE);
-	if (ft_fill_args(&prog, &argv) == FALSE)
+	if (ft_fill_args(prog, &argv) == FALSE)
 	{
 		free(prog);
 		return (FALSE);

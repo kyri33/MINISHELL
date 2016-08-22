@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:24:19 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 16:38:11 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 16:58:01 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_echo(char **cmd)
 
 	argv = NULL;
 	i = 1;
-	if (ft_fill_args(cmd, &argv) == TRUE)
+	if (ft_fill_args(*cmd, &argv) == TRUE)
 	{
 		while (argv[i] != NULL)
 		{

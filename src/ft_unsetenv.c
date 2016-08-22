@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:45:29 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 14:41:37 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 17:09:47 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			ft_unsetenv(char **cmd)
 
 	argv = NULL;
 	i = 1;
-	if (ft_fill_args(cmd, &argv) == FALSE)
+	if (ft_fill_args(*cmd, &argv) == FALSE)
 		ft_error("Unable to parse arguments.", NULL);
 	else if (ft_strnequ(*cmd, "unsetenv ", 7) == FALSE || argv[1] == NULL)
 		ft_error("Usage: unsetenv [NAME]", NULL);

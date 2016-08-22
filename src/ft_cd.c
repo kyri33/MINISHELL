@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:41 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 16:43:11 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/22 16:57:44 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_cd(char **cmd)
 	char	**argv;
 
 	argv = NULL;
-	if (ft_fill_args(cmd, &argv) == TRUE)
+	if (ft_fill_args(*cmd, &argv) == TRUE)
 	{
 		if (argv[1] == NULL)
 			ft_error("Usage: cd <path>", NULL);
