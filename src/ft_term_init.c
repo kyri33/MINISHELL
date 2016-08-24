@@ -9,7 +9,9 @@ t_bool	ft_term_init(char **term_name, struct termios *term)
 	if (tcgetattr(0, term) == -1)
 		return (FALSE);
 	term->c_lflag &= ~(ICANON);
-	term->c_lflag &= ~(ECHO);
+	/* the next line should not be there. This was copied code from a tut */
+	/* What it does is prevent you from writing on the STDIN */
+	/* term->c_lflag &= ~(ECHO); */
 	term->c_cc[VMIN] = 1;
 	term->c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, term) == -1)
