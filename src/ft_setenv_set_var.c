@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "defs.h"
-#include "libft.h"
 
 static t_bool	ft_set_var(char *name, char *val, char **env)
 {

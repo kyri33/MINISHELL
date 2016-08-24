@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "defs.h"
-#include "libft.h"
 
 t_bool	ft_setenv_check_vars(char ***vars)
 {

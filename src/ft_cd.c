@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include "libft.h"
 #include "defs.h"
 
 void	ft_cd(char **cmd)

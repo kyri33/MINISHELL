@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
 #include "defs.h"
 
 char	*ft_strjoin_path(char *path, char *cmd)

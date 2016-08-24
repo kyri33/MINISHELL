@@ -10,11 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include "libft.h"
 #include "defs.h"
 
 static void	ft_execve(char *prog, char ***args)

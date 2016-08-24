@@ -13,6 +13,13 @@
 #ifndef DEFS_H
 # define DEFS_H
 
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
+# include <termcap.h>
+# include <term.h>
+# include <curses.h>
 # include "libft.h"
 
 # define MAX_PATH_SIZE 4096
@@ -45,5 +52,6 @@ char		*ft_get_env_val(char *eq);
 char		*ft_strjoin_path(char *path, char *cmd);
 t_bool		ft_setenv_check_vars(char ***vars);
 int			ft_setenv_set_var(char *name, char *val, char **env);
+t_bool		ft_term_init(char **term_name, struct termios *term);
 
 #endif

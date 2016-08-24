@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "defs.h"
 
 static t_bool	ft_isspace(char c)
