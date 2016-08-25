@@ -85,7 +85,7 @@ static t_bool	ft_execute_path(char *cmd)
 	return (ret);
 }
 
-static void		ft_run_command(char **cmd)
+void		ft_run_command(char **cmd)
 {
 	if (ft_strnequ(*cmd, "exit", 5) == TRUE || ft_strnequ(*cmd, "exit ", 5))
 		ft_exit(cmd, EXIT_SUCCESS, NULL);
@@ -116,22 +116,21 @@ static void		ft_run_command(char **cmd)
 void			ft_parse_command(char ***cmds)
 {
 	int		i;
+	char	**pipes;
 
 	i = 0;
+	pipes = NULL;
 	while ((*cmds)[i] != NULL)
 	{
-		if (ft_rem_spaces(&((*cmds)[i])) == FALSE)
+		if ((pipes = ft_strsplit((*cmds)[i], '|')) == NULL)
 		{
 			ft_error("An unexpected error occured while reading user input.",
 				NULL);
 			return ;
 		}
-		i++;
-	}
-	i = 0;
-	while ((*cmds)[i] != NULL)
-	{
-		ft_run_command(&((*cmds)[i]));
+		ft_exec_pipes(&pipes);
+		ft_del_args(&pipes);
+		pipes = NULL;
 		i++;
 	}
 }

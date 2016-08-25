@@ -45,6 +45,7 @@ void		ft_env(void);
 void		ft_pwd(void);
 void		ft_unsetenv(char **cmd);
 void		ft_execute(char **cmd);
+void		ft_run_command(char **cmd);
 t_bool		ft_rem_spaces(char **cmd);
 char		*ft_get_env(char *var);
 char		*ft_get_env_name(char *eq);
@@ -53,5 +54,6 @@ char		*ft_strjoin_path(char *path, char *cmd);
 t_bool		ft_setenv_check_vars(char ***vars);
 int			ft_setenv_set_var(char *name, char *val, char **env);
 t_bool		ft_term_init(char **term_name, struct termios *term);
+void		ft_exec_pipes(char ***pipes);
 
 #endif
