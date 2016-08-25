@@ -25,7 +25,7 @@ OBJ = ft_cd.o ft_del_args.o ft_echo.o ft_env.o ft_error.o ft_execute.o \
 	  ft_setenv_check_vars.o ft_setenv_set_var.o ft_term_init.o
 INC = -I./libft/ -I./includes/
 LIB = -ltermcap -L./libft -lft
-TARG = 21sh
+TARG = 42sh
 
 all:
 	make -C libft/
