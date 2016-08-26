@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/22 17:00:23 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/26 13:21:27 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static t_bool	ft_execute_path(char *cmd)
 	return (ret);
 }
 
-void		ft_run_command(char **cmd)
+void			ft_run_command(char **cmd)
 {
 	if (ft_strnequ(*cmd, "exit", 5) == TRUE || ft_strnequ(*cmd, "exit ", 5))
 		ft_exit(cmd, EXIT_SUCCESS, NULL);

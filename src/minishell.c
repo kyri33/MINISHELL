@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:17 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/11 13:18:17 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/26 13:20:39 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		ft_loop(void)
 		ft_printf("%s%s%s@%s21sh$%s ", CCYN, ft_get_user(), CNRM, CMAG, CNRM);
 		if (get_next_line(STDIN, &cmd) == -1)
 			ft_error("An unexpected error occured while reading user input.",
-				NULL); 
+				NULL);
 		if (ft_rem_spaces(&cmd) == FALSE)
 			ft_error("An unexpected error occured while reading user input.",
 				NULL);

@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/22 16:55:45 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/08/26 13:23:09 by khamusek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <termcap.h>
 # include <term.h>
 # include <curses.h>
