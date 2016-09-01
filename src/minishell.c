@@ -6,11 +6,12 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:17 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/26 13:20:39 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/09/01 15:43:54 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs.h"
+#include "twentyonesh.h"
 
 static void		ft_free_data(char **cmd, char ***cmds)
 {
@@ -21,7 +22,7 @@ static void		ft_free_data(char **cmd, char ***cmds)
 	(*cmds) = NULL;
 }
 
-static void		ft_loop(void)
+static void		ft_loop(t_to *to)
 {
 	char	*cmd;
 	char	**cmds;
@@ -32,9 +33,7 @@ static void		ft_loop(void)
 	{
 		ft_free_data(&cmd, &cmds);
 		ft_printf("%s%s%s@%s21sh$%s ", CCYN, ft_get_user(), CNRM, CMAG, CNRM);
-		if (get_next_line(STDIN, &cmd) == -1)
-			ft_error("An unexpected error occured while reading user input.",
-				NULL);
+		ft_getline(&cmd, to);
 		if (ft_rem_spaces(&cmd) == FALSE)
 			ft_error("An unexpected error occured while reading user input.",
 				NULL);
@@ -44,20 +43,15 @@ static void		ft_loop(void)
 		ft_parse_command(&cmds);
 	}
 	ft_free_data(&cmd, &cmds);
+	reset_term(to);
 	ft_exit(&cmd, EXIT_SUCCESS, NULL);
 }
 
 int				main(void)
 {
-	char			*term_name;
-	struct termios	term;
+	t_to			to;
 
-	term_name = NULL;
-	if (ft_term_init(&term_name, &term) == FALSE)
-	{
-		ft_error("Could not initialise terminal.", NULL);
-		return (-1);
-	}
-	ft_loop();
+	init_term(&to);
+	ft_loop(&to);
 	return (0);
 }

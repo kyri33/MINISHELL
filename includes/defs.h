@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:38:26 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/26 13:23:09 by khamusek         ###   ########.fr       */
+/*   Updated: 2016/09/01 15:42:07 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <termcap.h>
-# include <term.h>
-# include <curses.h>
 # include "libft.h"
 
 # define MAX_PATH_SIZE 4096
@@ -54,7 +51,6 @@ char		*ft_get_env_val(char *eq);
 char		*ft_strjoin_path(char *path, char *cmd);
 t_bool		ft_setenv_check_vars(char ***vars);
 int			ft_setenv_set_var(char *name, char *val, char **env);
-t_bool		ft_term_init(char **term_name, struct termios *term);
 void		ft_exec_pipes(char ***pipes);
 
 #endif

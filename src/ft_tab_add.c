@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_tab_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/08 13:25:55 by khamusek          #+#    #+#             */
-/*   Updated: 2016/09/01 15:45:45 by dnematan         ###   ########.fr       */
+/*   Created: 2016/08/27 16:27:13 by kioulian          #+#    #+#             */
+/*   Updated: 2016/08/27 16:51:35 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
 #include "twentyonesh.h"
 
-void	ft_exit(char **cmd, int status, char *err)
+char	**ft_tab_add(char **tab, char *str)
 {
-	if (*cmd != NULL)
-		free(*cmd);
-	if (status == EXIT_FAILURE)
-		ft_putendl_fd(err, STDERR);
-	exit(status);
+	char	**temp;
+	int		i;
+	int		x;
+
+	i = 0;
+	x = 0;
+	temp = (char **)malloc(sizeof(char*) * 11);
+	temp[i] = ft_strdup(str);
+	i++;
+	while (i < 10)
+	{
+		temp[i] = ft_strdup(tab[x]);
+		i++;
+		x++;
+	}
+	free_tab(tab);
+	return (temp);
 }
