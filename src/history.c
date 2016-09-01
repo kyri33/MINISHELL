@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 16:53:16 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/01 15:46:32 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:03:08 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_clear(t_to *to)
 
 	i = 0;
 	ft_cursorend(to);
-	while (i < to->max_x + 8)
+	while (i < to->max_x + to->prompt + 1)
 	{
 		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
 		tputs(" ", 1, ft_ft_putchar);

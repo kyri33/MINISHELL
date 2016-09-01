@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/01 14:11:43 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:02:52 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ft_showline(char *line, t_to *to)
 	if (!to->old_x)
 		to->old_x = to->x;
 	ft_clear(to);
-	tputs("21$h > ", 1, ft_ft_putchar);
+	//tputs("21$h > ", 1, ft_ft_putchar);
+	ft_printf("%s%s%s@%s21sh$%s ", CCYN, ft_get_user(), CNRM, CMAG, CNRM);
 	tputs(line, 1, ft_ft_putchar);
 	if (line)
 		to->max_x = ft_strlen(line);

@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:54:48 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/01 15:46:44 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:01:28 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_to
 	char			**history;
 	int				y;
 	int				max_x;
+	int				prompt;
 	int				old_x;
 	struct termios	b_tattr; //Save a pointer to the old terminal to reset
 }				t_to;

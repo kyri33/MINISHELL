@@ -6,7 +6,7 @@
 /*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 13:23:17 by khamusek          #+#    #+#             */
-/*   Updated: 2016/09/01 15:43:54 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:04:13 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void		ft_loop(t_to *to)
 	while (1)
 	{
 		ft_free_data(&cmd, &cmds);
+		to->prompt = ft_strlen(ft_get_user()) + 7;
 		ft_printf("%s%s%s@%s21sh$%s ", CCYN, ft_get_user(), CNRM, CMAG, CNRM);
 		ft_getline(&cmd, to);
 		if (ft_rem_spaces(&cmd) == FALSE)
