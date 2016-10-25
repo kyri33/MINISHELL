@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 14:39:17 by kioulian          #+#    #+#             */
-/*   Updated: 2016/07/24 12:48:35 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/10/25 18:01:22 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# define BUFF_SIZE 8
+# define BUFF_SIZE 1024
 
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
