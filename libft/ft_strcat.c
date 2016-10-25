@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   strcat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:52:03 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 11:52:04 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/09 16:33:25 by kioulian          #+#    #+#             */
+/*   Updated: 2016/07/24 15:40:05 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strcat(char *dest, const char *src)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	int	src_pos;
-	int	dest_pos;
+	int	i;
+	int	j;
 
-	src_pos = 0;
-	dest_pos = 0;
-	while (dest[dest_pos] != '\0')
-		dest_pos++;
-	while (src[src_pos] != '\0')
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
 	{
-		dest[dest_pos] = src[src_pos];
-		dest_pos++;
-		src_pos++;
+		s1[i] = s2[j];
+		i++;
+		j++;
 	}
-	dest[dest_pos] = '\0';
-	return (dest);
+	s1[i] = '\0';
+	return (s1);
 }

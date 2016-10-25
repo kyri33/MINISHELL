@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool.h                                             :+:      :+:    :+:   */
+/*   environ.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/14 13:47:59 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/14 14:14:37 by khamusek         ###   ########.fr       */
+/*   Created: 2016/07/24 15:23:45 by kioulian          #+#    #+#             */
+/*   Updated: 2016/08/21 17:30:26 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BOOL_H
-# define BOOL_H
+#ifndef ENVIRON_H
+# define ENVIRON_H
+# include <dirent.h>
 
-# define FALSE 0
-# define TRUE 1
-
-typedef unsigned int	t_bool;
+typedef struct	s_search
+{
+	int				y;
+	char			**paths;
+	DIR				*dirp;
+	struct dirent	*entry;
+	char			*str;
+}				t_search;
 
 #endif

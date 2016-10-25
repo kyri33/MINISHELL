@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_indexof.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/08 13:24:33 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 13:24:35 by khamusek         ###   ########.fr       */
+/*   Created: 2016/07/03 13:31:47 by kioulian          #+#    #+#             */
+/*   Updated: 2016/07/03 13:49:31 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
-
-void	ft_error(char *err, char *err_info)
+int	ft_indexof(char *str, char c)
 {
-	if (err_info == NULL)
-		ft_putendl_fd(err, STDERR);
-	else
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		ft_putstr_fd(err, STDERR);
-		ft_putstr_fd(": ", STDERR);
-		ft_putendl_fd(err_info, STDERR);
+		if (str[i] == c)
+			return (i);
+		i++;
 	}
+	return (-1);
 }

@@ -3,108 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/22 13:09:14 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/03 14:51:44 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/16 10:30:41 by kioulian          #+#    #+#             */
+/*   Updated: 2016/10/25 17:39:23 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "libft.h"
-#include "get_next_line.h"
 
-static int	ft_buff_read(const int fd, char **buff)
+static int	check_read(char **stock, char *str, char **line, int index)
 {
-	int		rd;
-	char	*tmp1;
-	char	*tmp2;
-	char	*new_ln;
-
-	new_ln = NULL;
-	if (!(tmp1 = ft_strdup(*buff)))
-		return (-1);
-	if (!(tmp2 = ft_strnew(BUFF_SIZE)))
-		return (-1);
-	if ((rd = read(fd, (void *)tmp2, BUFF_SIZE)) < 0)
-		return (-1);
-	free(*buff);
-	*buff = ft_strjoin(tmp1, tmp2);
-	free(tmp1);
-	free(tmp2);
-	new_ln = ft_strchr(*buff, '\n');
-	if (new_ln == NULL && rd > 0)
-		return (ft_buff_read(fd, buff));
-	else if (new_ln == NULL && rd == 0 && ft_strlen(*buff) <= 0)
-		return (0);
-	else
-		return (1);
-}
-
-static int	ft_read(const int fd, char **buff)
-{
-	int		rd;
-	char	*new_ln;
-
-	new_ln = NULL;
-	if (!(*buff))
-	{
-		if (!(*buff = ft_strnew(BUFF_SIZE)))
-			return (-1);
-		if ((rd = read(fd, (void *)*buff, BUFF_SIZE)) < 0)
-			return (-1);
-		new_ln = ft_strchr(*buff, '\n');
-		if (new_ln == NULL && rd > 0)
-			return (ft_read(fd, &(*buff)));
-		else if (new_ln == NULL && rd == 0 && ft_strlen(*buff) <= 0)
-			return (0);
-		else
-			return (1);
-	}
-	else
-		return (ft_buff_read(fd, &(*buff)));
-}
-
-static int	ft_fill_line(char **line, char **buff)
-{
-	char	*new_ln;
 	char	*tmp;
 
-	new_ln = ft_strchr(*buff, '\n');
-	if (new_ln)
+	str[index] = '\0';
+	if ((tmp = ft_strchr(str, '\n')))
 	{
-		*new_ln = '\0';
-		if (!(*line = ft_strdup(*buff)))
-			return (-1);
-		if (!(tmp = ft_strdup(new_ln + 1)))
-			return (-1);
-		*new_ln = '\n';
-		free(*buff);
-		*buff = tmp;
+		*tmp = '\0';
+		*line = ft_strjoin(*stock, str);
+		tmp = NULL;
+		free(str);
+		str = NULL;
+		return (1);
 	}
-	else
-	{
-		if (!(*line = ft_strdup(*buff)))
-			return (-1);
-		free(*buff);
-		*buff = NULL;
-	}
-	return (1);
+	return (0);
 }
 
 int			get_next_line(const int fd, char **line)
 {
-	static char	*buff;
-	int			rd;
-	int			err;
+	char	*stock;
+	char	*temp;
+	char	*str;
+	int		index;
 
-	if ((rd = ft_read(fd, &buff)) < 0)
-		return (-1);
-	if (buff)
+	stock = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1));
+	str = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1));
+	while ((index = read(fd, str, BUFF_SIZE)) > 0)
 	{
-		if ((err = ft_fill_line(line, &buff)) < 0)
-			return (-1);
+		if (check_read(&stock, str, line, index))
+		{
+			free(stock);
+			stock = NULL;
+			return (1);
+		}
+		temp = stock;
+		stock = ft_strjoin(stock, str);
+		free(temp);
 	}
-	return (rd > 0);
+	return (0);
 }

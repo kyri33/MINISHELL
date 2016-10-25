@@ -3,41 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 12:03:35 by khamusek          #+#    #+#             */
-/*   Updated: 2016/08/04 12:43:08 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/15 10:27:28 by kioulian          #+#    #+#             */
+/*   Updated: 2016/05/15 14:49:29 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
+
+void	ft_is_negative(int *negative, int *n)
+{
+	if (*n < 0)
+	{
+		*negative = 1;
+		*n *= -1;
+	}
+}
 
 char	*ft_itoa(int n)
 {
+	int		temp;
+	int		len;
 	char	*str;
-	int		sign;
+	int		negative;
 
-	sign = 0;
-	str = ((char *)malloc(sizeof(char) * 50)) + 48;
-	str[1] = '\0';
-	if (n < 0)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = 2;
+	temp = n;
+	negative = 0;
+	ft_is_negative(&negative, &n);
+	while (temp /= 10)
+		len++;
+	len += negative;
+	str = (char*)malloc(sizeof(char) * len);
+	str[--len] = '\0';
+	while (len--)
 	{
-		sign = 1;
-		n = -n;
+		str[len] = n % 10 + '0';
+		n = n / 10;
 	}
-	(*str) = "0123456789"[n % 10];
-	n /= 10;
-	while (n != 0)
-	{
-		str--;
-		(*str) = "0123456789"[n % 10];
-		n /= 10;
-	}
-	if (sign == 1)
-	{
-		str--;
-		(*str) = '-';
-	}
+	if (negative == 1)
+		str[0] = '-';
 	return (str);
 }

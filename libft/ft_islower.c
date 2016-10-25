@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/08 13:26:28 by khamusek          #+#    #+#             */
-/*   Updated: 2016/07/08 13:26:30 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/11 08:57:46 by kioulian          #+#    #+#             */
+/*   Updated: 2016/05/15 14:37:52 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
-
-void	ft_pwd(void)
+int	ft_islower(int c)
 {
-	char	buf[MAX_PATH_SIZE];
-
-	if (getcwd(buf, MAX_PATH_SIZE) == NULL)
-		ft_error("Unable to return current working directory.", NULL);
+	if (c >= 'a' && c <= 'z')
+		return (1);
 	else
-		ft_putendl(buf);
+		return (0);
 }

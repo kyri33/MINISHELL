@@ -3,34 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:35:14 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 14:10:10 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/11 17:19:07 by kioulian          #+#    #+#             */
+/*   Updated: 2016/05/15 13:54:06 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-char	*ft_strstr(const char *haystack, const char *needle)
+char	*ft_strstr(const char *big, const char *little)
 {
-	int	hay;
-	int	ndl;
+	int	i;
+	int	j;
 
-	hay = 0;
-	if (needle[hay] == '\0')
-		return ((char *)haystack);
-	while (haystack[hay] != '\0')
+	i = 0;
+	j = 0;
+	if (!little[0])
+		return ((char *)big);
+	while (big[i] != '\0')
 	{
-		ndl = 0;
-		while (haystack[hay + ndl] == needle[ndl])
+		if (big[i] == little[j])
+			j++;
+		else
 		{
-			ndl++;
-			if (needle[ndl] == '\0')
-				return ((char *)&(haystack[hay]));
+			i -= j;
+			j = 0;
 		}
-		hay++;
+		if (!little[j])
+			return ((char *)&big[i - j + 1]);
+		i++;
 	}
 	return (NULL);
 }

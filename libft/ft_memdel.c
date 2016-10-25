@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:55:37 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 11:55:39 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/10 08:57:08 by kioulian          #+#    #+#             */
+/*   Updated: 2016/08/21 17:07:59 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 void	ft_memdel(void **ap)

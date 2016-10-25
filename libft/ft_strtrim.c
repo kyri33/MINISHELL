@@ -3,58 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:40:05 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 11:40:13 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/13 11:23:48 by kioulian          #+#    #+#             */
+/*   Updated: 2016/05/13 11:36:39 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
-
-int		ft_isspace(const char c)
-{
-	if (c == ' ' || c == '\n' || c == '\t')
-		return (1);
-	else
-		return (0);
-}
-
-int		ft_spaces(const char *s)
-{
-	int		spaces;
-	int		i;
-
-	spaces = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (ft_isspace(s[i]) == 1)
-			spaces++;
-		i++;
-	}
-	return (spaces);
-}
 
 char	*ft_strtrim(char const *s)
 {
-	int		dst;
-	int		src;
-	char	*dest;
+	char	*str;
+	int		i;
+	int		j;
 
-	dst = 0;
-	src = 0;
-	dest = ft_strnew(ft_strlen(s) - ft_spaces(s));
-	if (!dest)
-		return (NULL);
-	while (s[src] != '\0')
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	i = 0;
+	j = 0;
+	while (s[i] == '\n' || s[i] == '\t' || s[i] == 32)
+		i++;
+	while (s[i] != '\0')
 	{
-		while (ft_isspace(s[src]) == 1)
-			src++;
-		dest[dst] = s[src];
-		dst++;
-		src++;
+		str[j] = s[i];
+		i++;
+		j++;
 	}
-	return (dest);
+	j = j - 1;
+	while (str[j] == '\n' || str[j] == '\t' || str[j] == 32)
+		j--;
+	j = j + 1;
+	while (str[j] != '\0')
+	{
+		str[j] = '\0';
+		j++;
+	}
+	return (str);
 }

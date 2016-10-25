@@ -3,29 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khamusek <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/14 11:55:25 by khamusek          #+#    #+#             */
-/*   Updated: 2016/05/14 11:55:26 by khamusek         ###   ########.fr       */
+/*   Created: 2016/05/13 09:18:50 by kioulian          #+#    #+#             */
+/*   Updated: 2016/05/13 09:34:30 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*tmp;
+	size_t		i;
+	char		*tmp;
+	const char	*tmp2;
+	char		copy[len];
 
-	if (dest && src)
+	i = 0;
+	tmp = (char*)dst;
+	tmp2 = (const char*)src;
+	while (i < len)
 	{
-		tmp = (unsigned char *)malloc(sizeof(*tmp) * n);
-		ft_memcpy(tmp, src, n);
-		ft_memcpy(dest, tmp, n);
-		free(tmp);
-		return (dest);
+		copy[i] = tmp2[i];
+		i++;
 	}
-	else
-		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		tmp[i] = copy[i];
+		i++;
+	}
+	return (dst);
 }
