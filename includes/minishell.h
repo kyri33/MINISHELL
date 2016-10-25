@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:32:01 by kioulian          #+#    #+#             */
-/*   Updated: 2016/10/25 18:01:03 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/10/25 18:08:59 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_env
 	char		**environ;
 	char		*line;
 	char		**args;
+	char		**commands;
 }				t_env;
 
 char			*ft_getenv(char *str, t_env *e);

@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/21 18:26:51 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/10/25 18:20:48 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,17 @@ int		search_commands(t_env *e)
 
 void	process_line(t_env *e)
 {
-	e->args = ft_strsplit(e->line, ' ');
-	if (search_commands(e) > 0)
-		run_command(e);
+	int	i;
+
+	i = 0;
+	e->commands = ft_strsplit(e->line, ';');
+	while (e->commands[i])
+	{
+		e->args = ft_strsplit(e->commands[i], ' ');
+		if (search_commands(e) > 0)
+			run_command(e);
+		i++;
+	}
 }
 
 void	begin_shell(t_env *e)
