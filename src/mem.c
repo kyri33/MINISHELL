@@ -14,11 +14,10 @@
 
 void	run_exec(char *path, t_env *e)
 {
-	pid_t	pid;
 	int		status;
 
-	pid = fork();
-	if (pid == 0)
+	PID = fork();
+	if (PID == 0)
 	{
 		if (execve(path, e->args, e->environ) == -1)
 		{
@@ -27,7 +26,10 @@ void	run_exec(char *path, t_env *e)
 		}
 	}
 	else
-		waitpid(pid, &status, WUNTRACED);
+	{
+		waitpid(PID, &status, WUNTRACED);
+		PID = 0;
+	}
 	free(path);
 	path = NULL;
 }

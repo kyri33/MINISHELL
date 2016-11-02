@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include "../libft/includes/libft.h"
 # include <dirent.h>
+# include <signal.h>
+
+extern pid_t	PID;
 
 typedef struct	s_env
 {
@@ -38,5 +41,6 @@ char			*ft_replace_env(int *check, char *str, char *tab);
 void			run_command(t_env *e);
 int				ft_unsetenv(t_env *e);
 void			ft_del_env(int *check, char **environ, int index);
+void			signal_c(int signum);
 
 #endif

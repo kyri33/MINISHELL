@@ -14,5 +14,12 @@
 
 void	signal_c(int signum)
 {
-	
+	ft_putnbr(signum);
+	if (PID > 0)
+	{
+		ft_putchar('\n');
+		kill(PID, SIGKILL);
+	}
+	else
+		ft_putstr("\nPlease use the 'exit' command to quit\n$> ");
 }

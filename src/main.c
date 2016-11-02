@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+pid_t	PID = -1;
+
 int		search_commands(t_env *e)
 {
 	if (ft_strcmp(e->args[0], "cd") == 0)
@@ -77,7 +79,8 @@ void	begin_shell(t_env *e)
 int		main(void)
 {
 	t_env		e;
-
+	
+	signal(SIGINT, signal_c);
 	get_environ(&e);
 	begin_shell(&e);
 	return (1);

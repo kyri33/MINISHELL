@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = src/commands.c src/mem.c src/main.c src/environ.c libft/libft.a
+SRC = src/signals.c src/commands.c src/mem.c src/main.c src/environ.c libft/libft.a
 
 FLAGS = clang -Werror -Wextra -Wall -g -I includes -o
 
