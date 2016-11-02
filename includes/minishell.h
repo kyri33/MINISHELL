@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:32:01 by kioulian          #+#    #+#             */
-/*   Updated: 2016/10/25 18:08:59 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/02 13:42:28 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <dirent.h>
 # include <signal.h>
 
-extern pid_t	PID;
+extern pid_t	g_pid;
 
 typedef struct	s_env
 {

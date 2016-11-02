@@ -6,13 +6,13 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/10/25 18:20:48 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/02 14:47:26 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-pid_t	PID = -1;
+pid_t	g_pid = -1;
 
 int		search_commands(t_env *e)
 {
@@ -50,6 +50,7 @@ void	process_line(t_env *e)
 			run_command(e);
 		i++;
 	}
+	free_tab(e->commands);
 }
 
 void	begin_shell(t_env *e)
@@ -79,7 +80,7 @@ void	begin_shell(t_env *e)
 int		main(void)
 {
 	t_env		e;
-	
+
 	signal(SIGINT, signal_c);
 	get_environ(&e);
 	begin_shell(&e);

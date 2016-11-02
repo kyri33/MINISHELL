@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/24 13:48:55 by kioulian          #+#    #+#             */
-/*   Updated: 2016/10/25 18:14:19 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/02 13:45:21 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	run_exec(char *path, t_env *e)
 {
 	int		status;
 
-	PID = fork();
-	if (PID == 0)
+	g_pid = fork();
+	if (g_pid == 0)
 	{
 		if (execve(path, e->args, e->environ) == -1)
 		{
@@ -27,8 +27,8 @@ void	run_exec(char *path, t_env *e)
 	}
 	else
 	{
-		waitpid(PID, &status, WUNTRACED);
-		PID = 0;
+		waitpid(g_pid, &status, WUNTRACED);
+		g_pid = 0;
 	}
 	free(path);
 	path = NULL;
