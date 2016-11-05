@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/11/02 14:47:26 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/05 12:10:01 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	process_line(t_env *e)
 		if (search_commands(e) > 0)
 			run_command(e);
 		i++;
+		if (e->args)
+			free_tab(e->args);
 	}
 	free_tab(e->commands);
 }
@@ -64,8 +66,6 @@ void	begin_shell(t_env *e)
 			process_line(e);
 			free(e->line);
 			e->line = NULL;
-			if (e->args)
-				free_tab(e->args);
 		}
 		begin_shell(e);
 	}
